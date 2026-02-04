@@ -10,11 +10,55 @@ with open('konyvek.txt', 'r', encoding='utf-8') as forrasfajl:
         nemzetiseg = adatok[3]
         cim = adatok[4]
         helyezes = int(adatok[5])
-        konyv = {'nev ': nev,
+        konyv = {'nev': nev,
                 'szul_ev': szul_ev,
                 'hal_ev': hal_ev,
                 'nemzetiseg': nemzetiseg,
+                'cim': cim,
                 'helyezes': helyezes }
         konyvek.append(konyv)
 
-print(f'{konyvek=}')
+# print(f'{konyvek=}')
+#3.2 feladat
+print(f"3.2. feladat: Az állományban {len(konyvek)} db könyv adatai szerepelnek.")
+
+#3.3 feladat
+magyar_konyvek = []
+for konyv in konyvek:
+    if konyv['nemzetiseg'] == 'magyar':
+        magyar_konyvek.append(konyv)
+
+
+# print(len(magyar_konyvek))
+
+legjobb_konyv = magyar_konyvek[0]
+for konyv in magyar_konyvek:
+    if konyv['helyezes'] < legjobb_konyv['helyezes']:
+        legjobb_konyv = konyv
+
+print(f"3.3 feladat: A legjobb helyezést elért magyar könyv: {legjobb_konyv['nev']}: {legjobb_konyv['cim']}")
+
+#3.4 feladat
+van = False
+for konyv in konyvek:
+    if konyv['nemzetiseg'] == "német":
+        print("3.4. feladat: A listában szerepel német író könyve.")
+        van = True
+        break
+
+if van:
+    print("3.4. feladat: A listában szerepel német író könyve.")
+else:
+    print("3.4. feladat: A listában NEM szerepel német író könyve.")
+
+#3.5 feladat
+
+idosebb_mint_90 = []
+for konyv in konyvek:
+    if ((konyv["hal_ev"] - konyv["szul_ev"]) >= 90):
+        idosebb_mint_90.append(konyv['nev'])
+    
+print(f"3.5. feladat: 90 évesnél idősebb írók :{set(idosebb_mint_90)}")
+
+
+
